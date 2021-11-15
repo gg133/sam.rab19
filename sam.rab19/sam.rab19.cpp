@@ -48,6 +48,13 @@ void showAns(int i)
         }
  }
 
+void results()
+{
+    cout<<"Вы успешно закончили викторину. Итоговый счет: " << score << endl;
+    exit(0);
+}
+
+
 void game()
 {
     for (int i = 0; i < 15; i++)
@@ -250,14 +257,14 @@ int main()
         cin >> pickMenu;
         if (pickMenu == 1)
         {
-            while (true)
-            { 
+            
                 system("cls");
               /*      cout << "---------------"<<endl;
                     showTimer();
                     cout << "---------------"<<endl;*/
-                    game();              
-            }
+                    game();
+                    results();
+            
         }
         else if (pickMenu == 2)
         {
