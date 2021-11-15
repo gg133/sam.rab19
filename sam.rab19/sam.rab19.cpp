@@ -12,12 +12,56 @@ bool sup = false;
 int getSup;
 double timer = 10.00;
 double counterTime;
+int userAns;
 
 
 
 
+string questionsAndAnswer[15][6] = {
+    {"Сколько будет 5+5?", "1", "2", "5", "10", "10"},
+    {"Что хранит тип данных int?", "Символ", "Строку", "Целое число", "Булево", "Целое число" },
+    {"Самый дешовый бургер в маке?", "Биг Мак", "Чизбургер", "Гамбургер", "Нагетсы", "Гамбургер"},
+    {"Как зовут президента РФ?", "Володя", "Паша", "Катя", "Никита", "Володя"},
+    {"Последня часть фифы?", "FIFA21", "FIFA22", "FIFA ONLINE 4", "FIFA 5", "FIFA22"},
+    {"Последняя часть Mortal Kombat?", "MKX", "MK Mobail","MKXL", "MK11"},
+    {"У какого треугольник все углы равны?", "Прямоугольный", "Равнобедренный", "Равноугольный", "Равносторонний", "Равносторонний"},
+    {"Человек который очень любит детей?", "Влад А4", "Джарахов", "Путин", "Папич", "Влад А4"},
+    {"Сколь будет 2*2+2?", "1","14", "17", "8", "8"},
+    {"Сколько у человека(Здорового) хромосом?", "45","46", "47", "48", "46"},
+    {"Сколько стоит авп в кс го", "4550", "4650", "4750", "4850", "4750"},
+    {"Последня версия Windows?", "10", "9", "XP", "11", "11"},
+    {"На какой планете мы живем?", "Марс", "Земля", "Юпитер", "Луна", "Земля"},
+    {"Сколько будет 1 + 1?", "1", "2", "3", "4", "2"},
+    {"Сколько будет 3 + 3?", "1", "3", "6", "10", "6"}
+};
+
+void showQueAns()
+{
+        for (int i = 0; i < 15; i++)
+        {
+            cout << questionsAndAnswer[i][0] << endl;;
+        }
+}
+void showAns()
+{
+    for (int i = 1; i < 5; i++)
+    {
+        for (int j = 0; j < 15; j++)
+        {
+            cout << questionsAndAnswer[i][j] << endl;;
+        }
+    }
+}
 
 
+
+
+void game()
+{
+    showQueAns();
+    showAns();
+
+}
 
 
 //void choosePoint3()
@@ -49,6 +93,8 @@ double counterTime;
 //
 //
 //}
+
+
 
 int chooseLives(int qtyLives)
 {
@@ -96,9 +142,9 @@ void showTimer()
         {
 
             
-            cout << timer << endl;;
+            cout << "\r" << timer;
             timer = timer - 0.01;
-            Sleep(100);
+            Sleep(1000);
 
         }
         else if (timer <= 0)
@@ -171,7 +217,7 @@ void BackToMenu()
 
 int main()
 {
-    srand(static_cast<unsigned int>(time(0)));
+    srand(time(0));
     setlocale(0, "");
     int pickMenu;
     int pickMenuOpt;
@@ -184,7 +230,9 @@ int main()
             while (true)
             {
                 system("cls");
-                showTimer();
+                game();
+           
+                cout << endl;
             }
         }
         else if (pickMenu == 2)
