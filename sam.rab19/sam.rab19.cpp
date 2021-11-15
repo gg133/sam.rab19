@@ -12,24 +12,10 @@ bool sup = false;
 int getSup;
 double timer = 10.00;
 double counterTime;
+int userAns;
+int score;
 
-void showQueAns()
-{
-        for (int i = 0; i < 15; i++)
-        {
-            cout << questionsAndAnswer[i][0] << endl;;
-        }
-}
-void showAns()
-{
-    for (int i = 1; i < 5; i++)
-    {
-        for (int j = 0; j < 15; j++)
-        {
-            cout << questionsAndAnswer[i][j] << endl;;
-        }
-    }
-}
+
 
 
 
@@ -38,9 +24,9 @@ string questionsAndAnswer[15][6] = {
     {"Сколько будет 5+5?", "1", "2", "5", "10", "10"},
     {"Что хранит тип данных int?", "Символ", "Строку", "Целое число", "Булево", "Целое число" },
     {"Самый дешовый бургер в маке?", "Биг Мак", "Чизбургер", "Гамбургер", "Нагетсы", "Гамбургер"},
-    {"Как зовут президента РФ?", "Володя", "Паша", "Катя", "Никита", "Володя"},
+    {"Как зовут президента РФ?", "1.Володя", "Паша", "Катя", "Никита", "Володя"},
     {"Последня часть фифы?", "FIFA21", "FIFA22", "FIFA ONLINE 4", "FIFA 5", "FIFA22"},
-    {"Последняя часть Mortal Kombat?", "MKX", "MK Mobail","MKXL", "MK11"},
+    {"Последняя часть Mortal Kombat?", "MKX", "MK Mobail","MKXL", "MK11", "MK11"},
     {"У какого треугольник все углы равны?", "Прямоугольный", "Равнобедренный", "Равноугольный", "Равносторонний", "Равносторонний"},
     {"Человек который очень любит детей?", "Влад А4", "Джарахов", "Путин", "Папич", "Влад А4"},
     {"Сколь будет 2*2+2?", "1","14", "17", "8", "8"},
@@ -52,66 +38,53 @@ string questionsAndAnswer[15][6] = {
     {"Сколько будет 3 + 3?", "1", "3", "6", "10", "6"}
 };
 
-string checkAnswer()
+
+void showAns(int i)
+{
+    cout<< questionsAndAnswer[i][0] << endl;
+        for (int j = 1; j < 5; j++)
+        {
+            cout<<j<<"." << questionsAndAnswer[i][j] << endl;
+        }
+ }
+
+void game()
 {
     for (int i = 0; i < 15; i++)
     {
-        for (int j = 1; j < 5; j++)
-        {
-            cout << questionsAndAnswer[i][j]<<endl;
+            showAns(i);
             cout << "\nВыберите вариант ответа: ";
             cin >> userAns;
-            if (userAns == questionsAndAnswer[i][userAns])
+            if (lives > 0)
             {
-                cout << "Ответ верный";
+                if (questionsAndAnswer[i][userAns] == questionsAndAnswer[i][5])
+                {
+                    score++;
+                    cout << "Ответ верный " << "Вы получаете +1 балл." << " У вас " << score << " баллов\n";
+                    system("pause");
+                    system("cls");
+                }
+
+                else
+                {
+                    lives--;
+                    cout << "Ответ не верный, вы теряете 1 жизнь. У вас осталось " << lives << " жизней\n";
+                    system("pause");
+                    system("cls");
+                }
             }
             else
             {
-                lives--;
-                cout << "Ответ не верный, вы теряете 1 жизнь. У вас осталось " << lives << " Жизней";
-                
+                system("cls");
+                cout << "Вы ошиблись максимальное колличество раз. Игра закончена\n";
+                cout << "Итоговый счет: " << score << endl;
+                system("pause");
+                exit(0);
             }
-        }
     }
    
 }
 
-void game()
-{
-    showQueAns();
-    showAns();
-
-}
-
-
-void showQueAns()
-{
-    for (int i = 0; i < 15; i++)
-    {
-        cout << questionsAndAnswer[i][0] << endl;;
-    }
-}
-void showAns()
-{
-    for (int i = 1; i < 5; i++)
-    {
-        for (int j = 0; j < 15; j++)
-        {
-            cout << questionsAndAnswer[i][j] << endl;;
-        }
-    }
-}
-
-
-
-
-void game()
-{
-    /*showQueAns();
-    showAns();*/
-    checkAnswer();
-
-}
 
 
 //void choosePoint3()
@@ -192,10 +165,10 @@ void showTimer()
         {
 
             
-            cout << timer << endl;;
+            cout <<"\r"<< timer;
             timer = timer - 0.01;
-            Sleep(1000);
-
+            Sleep(100);
+           
         }
         else if (timer <= 0)
         {
@@ -267,7 +240,7 @@ void BackToMenu()
 
 int main()
 {
-    srand(time(0));
+    srand(static_cast<unsigned int>(time(0)));
     setlocale(0, "");
     int pickMenu;
     int pickMenuOpt;
@@ -278,9 +251,12 @@ int main()
         if (pickMenu == 1)
         {
             while (true)
-            {
+            { 
                 system("cls");
-                showTimer();
+              /*      cout << "---------------"<<endl;
+                    showTimer();
+                    cout << "---------------"<<endl;*/
+                    game();              
             }
         }
         else if (pickMenu == 2)
