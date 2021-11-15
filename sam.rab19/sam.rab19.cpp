@@ -12,8 +12,24 @@ bool sup = false;
 int getSup;
 double timer = 10.00;
 double counterTime;
-int userAns;
 
+void showQueAns()
+{
+        for (int i = 0; i < 15; i++)
+        {
+            cout << questionsAndAnswer[i][0] << endl;;
+        }
+}
+void showAns()
+{
+    for (int i = 1; i < 5; i++)
+    {
+        for (int j = 0; j < 15; j++)
+        {
+            cout << questionsAndAnswer[i][j] << endl;;
+        }
+    }
+}
 
 
 
@@ -60,7 +76,12 @@ string checkAnswer()
    
 }
 
+void game()
+{
+    showQueAns();
+    showAns();
 
+}
 
 
 void showQueAns()
@@ -170,8 +191,8 @@ void showTimer()
         if (timer > 0)
         {
 
-
-            cout << "\r" << timer;
+            
+            cout << timer << endl;;
             timer = timer - 0.01;
             Sleep(1000);
 
@@ -259,9 +280,7 @@ int main()
             while (true)
             {
                 system("cls");
-                game();
-
-                cout << endl;
+                showTimer();
             }
         }
         else if (pickMenu == 2)
