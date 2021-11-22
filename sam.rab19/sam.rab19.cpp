@@ -3,7 +3,6 @@
 #include <cmath>
 #include <ctime>
 #include <Windows.h>
-#include <thread>
 
 using namespace std;
 
@@ -135,8 +134,6 @@ void showGame() {
 					}
 				}
 			}
-
-			/*  cin >> userAns;*/
 
 			if (question[i].answer[userAns - 1] == question[i].correct)
 			{
